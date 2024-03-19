@@ -1,0 +1,238 @@
+body {
+    height: 100%;
+    margin: 0;
+    display: flex; /* 使用 Flexbox 布局 */
+    align-items: center; /* 在垂直方向上居中 */
+    justify-content: center; /* 在水平方向上居中 */
+}
+
+#page-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+#room-wrapper {
+    flex: 65%; /* 這裡修改為65% */
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+}
+
+.create-room {
+    margin-bottom: 20px; /* 下方留出 20px 的間距 */
+}
+
+#create-room-btn {
+    background-color: #4a90e2; /* 深藍色背景 */
+    color: #fff; /* 白色文字 */
+    border: none; /* 移除邊框 */
+    border-radius: 5px; /* 圓角 */
+    padding: 10px 20px; /* 內邊距 */
+    cursor: pointer; /* 指針顯示為手型 */
+    transition: background-color 0.3s; /* 平滑過渡效果 */
+}
+
+#create-room-btn:hover {
+    background-color: #1e78cb; /* 深藍色背景 - 滑鼠懸停時 */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    display: flex; /* 使用 Flex 布局 */
+    flex-direction: row; /* 水平排列 */
+}
+
+.page-container{
+    width: 65%; /* 設置寬度為65% */
+    flex-direction: column; /* 水平排列 */
+    display: flex; /* 使用 Flex 布局 */
+    margin: 20px;
+    background-color: #fff;
+}
+
+.playground-container {
+    display: flex; /* 使用 Flex 布局 */
+    flex-direction: row; /* 水平排列 */
+    flex-wrap: wrap; /* 換行排列 */
+    justify-content: flex-start; /* 從左向右排列 */
+    align-items: flex-start; /* 從上向下排列 */
+    height: 500px; /* 固定高度 */
+    overflow-y: auto; /* 添加滾動條 */
+}
+
+#chat {
+    width: 35%; /* 設置聊天容器寬度為35% */
+    margin-top: 20px;
+    margin-left: 20px; /* 加入左邊距 */
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.room-container {
+    display: flex; /* 使用 Flex 布局 */
+    flex-direction: row; /* 垂直排列 */
+    flex-wrap: wrap; /* 換行排列 */
+    align-items: center; /* 水平居中對齊 */
+}
+
+.room-button {
+    width: 200px; /* 設置寬度 */
+    height: 100px; /* 設置高度 */
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    overflow: hidden; /* 溢出隱藏 */
+    margin: 10px;
+    background-color: #6495ED; /* 淡藍色 */
+    cursor: pointer; /* 添加指針樣式 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加浮動效果的陰影 */
+}
+
+.room-button:hover {
+    background-color: #4169E1; /* 深藍色 */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* 滑鼠懸停時增加陰影 */
+}
+
+.room-button p {
+    margin: 5px 0; /* 調整上下邊距 */
+}
+.room-name {
+    font-size: 16px; /* 調整字體大小 */
+    font-weight: bold;
+    overflow: hidden; /* 溢出隱藏 */
+    white-space: nowrap; /* 不換行 */
+    text-overflow: ellipsis; /* 文字溢出顯示省略號 */
+}
+
+.user-info {
+    font-size: 14px; /* 調整字體大小 */
+    overflow: hidden; /* 溢出隱藏 */
+    white-space: nowrap; /* 不換行 */
+    text-overflow: ellipsis; /* 文字溢出顯示省略號 */
+}
+
+#chat-messages {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    height: 500px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    padding: 10px;
+}
+
+#message {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.create-room button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.create-room button:hover {
+    background-color: #45a049;
+}
+
+.lock-symbol {
+    font-size: 16px;
+}
+ul {
+    height: 500px;
+    background-color: white;
+    overflow-y: scroll;
+}
+li {
+    list-style: none;
+}
+
+.dialog {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 2px solid #000;
+    z-index: 1000;
+}
+
+.close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+.exit-button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #ccc;
+    border: none;
+    cursor: pointer;
+}
+
+/* 新增的對話框樣式 */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.dialog-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 2px solid #000;
+    z-index: 1001;
+}
+
+/* JavaScript 動畫效果 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+#landing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}

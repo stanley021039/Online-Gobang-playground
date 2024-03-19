@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>五子棋 room_{{roomname}}</title>
+    <link rel="stylesheet" type="text/css" href="{{ APPLICATION_ROOT }}/static/css/room.css">
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="game-container">
+        <div id="info">
+            <div id="players">
+                <h2>玩家資訊</h2>
+                <div id="black-info">
+                    <button id="move-black" onclick="user_move('black')">移動</button>
+                    <button id="set-black-ai" action_="set" onclick="set_AI('black')">設置AI</button>
+                    黑方：<span id="black-player" class="player_"></span>
+                </div>
+                <div id="white-info">
+                    <button id="move-white" onclick="user_move('white')">移動</button>
+                    <button id="set-white-ai" action_="set" onclick="set_AI('white')">設置AI</button>
+                    白方：<span id="white-player" class="player_"></span>
+                </div>
+                <div id="observer-info">
+                    <button id="move-observer" onclick="user_move('observer')">移動</button>
+                    <button id="set-observer-ai" style="visibility: hidden; pointer-events: none;">設置AI</button>
+                    觀眾：<span id="observer-count" class="player_">0</span>
+                </div>
+            </div>
+            <div class="choose" id="choose_">
+                <button id="restart">重新开始</button>
+                <button id="exit-room" onclick="exit_room()">退出房間</button>
+            </div>
+        </div>
+        <canvas id="chess" width="450px" height="450px"></canvas>
+    </div>
+    <div id="chat">
+        <ul id="chat-messages">
+        </ul>
+        <input type="text" id="message" placeholder="Enter a Message">
+    </div>
+    <script>
+        var applicationRoot = "{{ APPLICATION_ROOT }}";
+        const username = "{{ username }}";
+        const roomPassword = localStorage.getItem('roomPassword');
+        const roomHash = localStorage.getItem('roomHash');
+        var userchara = ""
+        const socket = io();
+    </script>
+    <script src="{{ APPLICATION_ROOT }}/static/js/room/user.js"></script>
+    <script src="{{ APPLICATION_ROOT }}/static/js/room/board_maintain.js"></script>
+</body>
+</html>

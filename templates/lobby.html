@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>房間資訊</title>
+    <link rel="stylesheet" type="text/css" href="{{ APPLICATION_ROOT }}/static/css/lobby.css">
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="landing">
+        <input type="text" id="username" placeholder="使用者名稱">
+        <button id="join-btn">加入</button>
+        <p id="user-exists-msg" style="display: none; color: red;">用戶已存在！</p>
+    </div>
+    <div class="page-container" id="page-container" style="display: none;">
+        <div class="create-room">
+            <button id="create-room-btn" onclick="showCreateDialog()">建立房間</button>
+        </div>
+        <div class="playground-container">
+            <div id="room-container" class="room-container">
+                {% for room in rooms_info %}
+                    <button class="room-button" onclick="showJoinDialog('{{ room.name }}', '{{ room.need_pwd }}', '{{ room.hash }}')">
+                        <p class="room-name">
+                            {{ room.name }}
+                            {% if room.need_pwd %}
+                                <span class="lock-symbol">&#x1F512;</span> <!-- 鎖的符號 -->
+                            {% endif %}
+                        </p>
+                        <p class="user-info">黑: {% if room.black_user %} {{ room.black_user }} {% else %} 等待中... {% endif %}</p>
+                        <p class="user-info">白: {% if room.white_user %} {{ room.white_user }} {% else %} 等待中... {% endif %}</p>
+                    </button>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div id="chat" style="display: none;">
+        <ul id="chat-messages">
+        </ul>
+        <input type="text" id="message" placeholder="輸入訊息">
+    </div>
+
+    <!-- 創建房間對話框 -->
+    <div class="overlay create-overlay" id="createOverlay">
+        <div class="dialog-box" id="createDialogBox">
+            <button class="close" onclick="hideCreateDialog()">&times;</button> <!-- 關閉按鈕 -->
+            <h3>創建房間</h3>
+            <form id="createRoomForm">
+                <label for="createRoomName">房間名稱:</label><br>
+                <input type="text" id="createRoomName" name="createRoomName"><br>
+                <label for="createRoomPassword">房間密碼:</label><br>
+                <input type="password" id="createRoomPassword" name="createRoomPassword" disabled><br>
+                <input type="checkbox" id="createPasswordCheckbox" onchange="toggleCreatePasswordInput()"> 使用密碼<br>
+                <button type="button" onclick="createRoom()">創建房間</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 加入房間對話框 -->
+    <div class="overlay join-overlay" id="joinOverlay">
+        <div class="dialog-box" id="joinDialogBox">
+            <button class="close" onclick="hideJoinDialog()">&times;</button>
+            <h3>加入房間</h3>
+            <span id="roomHashSpan" style="display: none;"></span>
+            <p>房間名稱：<span id="roomNameSpan"></span></p>
+            <p id="joinPasswordRow">房間密碼：<input type="password" id="roomPasswordInput" placeholder="輸入房間密碼"></p>
+            <button onclick="joinRoom()">加入房間</button>
+            <p id="errorMessageRow" style="display: none;">error: <span id="errorMessage"></span></p>
+        </div>
+    </div>
+    <script>
+        var applicationRoot = "{{ APPLICATION_ROOT }}";
+        const socket = io({autoConnect: false});
+        var username = "{{ username }}"
+        console.log(`current username: ${username}`)
+        var userchara = null
+    </script>
+    <script src="{{ APPLICATION_ROOT }}/static/js/lobby/dialog.js"></script>
+    <script src="{{ APPLICATION_ROOT }}/static/js/lobby/redirec_room.js"></script>
+    <script src="{{ APPLICATION_ROOT }}/static/js/lobby/user.js"></script>
+</body>
+</html>
